@@ -42,6 +42,19 @@ Write a rich Markdown report with this general order, adapting section names to 
 
 Do not keep empty sections. If a dataset is small or simple, collapse sections.
 
+## Output Format Options
+
+Offer or infer one of these final result formats:
+
+| option | use when | deliverable |
+|---|---|---|
+| `markdown` | User wants a portable text report, GitHub issue, local file, or no target is specified | A Markdown report with tables and Mermaid fences |
+| `feishu-doc` | User wants a shareable Feishu/Lark document | A Feishu/Lark doc with structured sections, callouts, tables, and Mermaid/whiteboard blocks when useful |
+| `feishu-doc-htmlbox` | User wants rich visualization, dashboards, animated charts, ECharts, or interactive exploration | A Feishu/Lark doc plus htmlbox blocks for verified interactive charts |
+| `artifacts` | User wants reproducibility or handoff to analysts | Markdown report plus local CSV/JSON summaries, chart HTML files, and any generated images |
+
+If the user explicitly asks for Feishu/Lark output, do not stop at local Markdown. Create or update the Feishu/Lark document and return the document URL.
+
 ## Required Evidence
 
 Include at least:
@@ -92,6 +105,38 @@ xychart-beta
   y-axis "Records" 0 --> 100
   line [12, 45, 76]
 ```
+
+## Feishu Doc Contract
+
+When producing `feishu-doc` or `feishu-doc-htmlbox`:
+
+- Create a document with a front-loaded callout summarizing the headline result and caveats.
+- Use headings for the same adaptive sections as the Markdown report.
+- Use tables for exact numeric summaries and compact comparisons.
+- Use callouts for risks, caveats, and "do not over-interpret" warnings.
+- Add at least one visual block for the core workflow, schema, or headline trend when the data supports it.
+- Return the final document URL and mention any charts that could not be inserted.
+
+## Htmlbox Visualization Contract
+
+For `feishu-doc-htmlbox`, use the `feishu-cli-htmlbox` skill and its recipes. Treat each htmlbox as an executable artifact with this lifecycle:
+
+1. Select chart type from the computed evidence:
+   - trend over time -> ECharts line or area
+   - category comparison -> bar or stacked bar
+   - composition -> pie, treemap, sunburst, or stacked bar
+   - distribution -> histogram, boxplot, scatter/bubble, heatmap, or calendar heatmap
+   - flow or conversion -> funnel or Sankey
+   - multivariate profile -> radar or parallel coordinates
+   - executive summary -> KPI dashboard
+2. Build the chart from aggregated data. Avoid embedding raw sensitive rows.
+3. Write a self-contained HTML file with fixed chart height, responsive width, loading fallback, and `resize` handling.
+4. Verify locally with `scripts/verify.sh <html> [wait_seconds]`; fix white screens, console/page errors, missing canvas/svg, and label problems before insertion.
+5. Insert with `feishu-cli doc htmlbox create <doc_id> --html-file <html_file>`.
+6. In the document, precede each htmlbox with a short heading and one sentence explaining what to look for.
+7. Record generated chart file paths and inserted block IDs in the methods appendix when available.
+
+Do not use htmlbox when a static table is clearer or when interaction would imply unsupported precision.
 
 ## Fun Facts Criteria
 

@@ -18,7 +18,7 @@ Exploratory Data Analysis is not just "print `df.describe()`." Good EDA finds th
 - Builds a quick data dictionary: shape, types, sample rows, likely identifiers, dates, categories, measures, and text fields.
 - Runs a serial data-quality gate before deeper analysis.
 - Uses independent analysis passes for distributions, relationships, segments, anomalies, and fun facts when the task is broad enough.
-- Produces a Markdown report with Mermaid diagrams where they help.
+- Produces Markdown reports, Feishu/Lark documents, or Feishu/Lark documents with htmlbox interactive charts.
 - Requires claims to be supported by computed evidence: counts, denominators, percentages, ranges, examples, or caveats.
 
 ## Architecture
@@ -57,6 +57,12 @@ Or:
 Use $eda on this CSV. I care most about missing values, segment differences, anomalies, and surprising findings.
 ```
 
+For a Feishu/Lark visual report:
+
+```text
+Use $eda to analyze this Excel file and output the result as a Feishu document with htmlbox visualizations.
+```
+
 ## Output
 
 The final report should adapt to the dataset, but typically includes:
@@ -73,13 +79,25 @@ The final report should adapt to the dataset, but typically includes:
 
 See [`references/report-contract.md`](references/report-contract.md) for the report interface and subtask output contract.
 
+Supported final output formats:
+
+| format | best for |
+|---|---|
+| Markdown | Portable reports, GitHub issues, local handoff |
+| Feishu/Lark document | Shareable business-facing reports |
+| Feishu/Lark document + htmlbox | Interactive ECharts dashboards, animated charts, rich visual analysis |
+| Artifacts | Reproducible handoff with summaries and chart files |
+
+See [`references/output-formats.md`](references/output-formats.md) for selection rules and the Feishu/htmlbox workflow.
+
 ## Repository Layout
 
 ```text
 .
 ├── SKILL.md                       # Main Codex skill instructions
 ├── references/
-│   └── report-contract.md         # Final report and subtask contracts
+│   ├── report-contract.md         # Final report and subtask contracts
+│   └── output-formats.md          # Markdown, Feishu, htmlbox, and artifacts modes
 ├── agents/
 │   └── openai.yaml                # UI metadata
 ├── assets/
@@ -127,6 +145,7 @@ EDA 不只是运行 `df.describe()`。好的探索性数据分析应该快速摸
 - 在深度分析前先执行串行的数据质量检查。
 - 在任务足够宽泛时，用相互独立的分析 pass 探索分布、关系、分群、异常和 Fun Facts。
 - 输出支持 Mermaid 图表的 Markdown 报告。
+- 支持 Markdown、飞书文档、飞书文档 + htmlbox 互动图表等输出模式。
 - 要求关键结论必须有计算证据支撑，例如计数、分母、百分比、范围、样例或限制说明。
 
 ## 架构
@@ -165,6 +184,12 @@ Use $eda to explore ./data/customers.xlsx and produce a Markdown report with Mer
 Use $eda on this CSV. I care most about missing values, segment differences, anomalies, and surprising findings.
 ```
 
+如果希望输出为飞书可视化报告：
+
+```text
+Use $eda to analyze this Excel file and output the result as a Feishu document with htmlbox visualizations.
+```
+
 ## 输出内容
 
 最终报告会根据数据集自适应调整，通常包含：
@@ -181,13 +206,25 @@ Use $eda on this CSV. I care most about missing values, segment differences, ano
 
 报告结构与子任务输出契约见 [`references/report-contract.md`](references/report-contract.md)。
 
+支持的最终输出格式：
+
+| 格式 | 适合场景 |
+|---|---|
+| Markdown | 本地报告、GitHub issue、文本交付 |
+| 飞书/Lark 文档 | 面向业务或团队共享的分析报告 |
+| 飞书/Lark 文档 + htmlbox | ECharts 互动图表、动态可视化、数据大屏式报告 |
+| 分析 artifacts | 可复现交接，包含汇总文件与图表文件 |
+
+输出模式选择规则与 Feishu/htmlbox 工作流见 [`references/output-formats.md`](references/output-formats.md)。
+
 ## 仓库结构
 
 ```text
 .
 ├── SKILL.md                       # Codex skill 主说明
 ├── references/
-│   └── report-contract.md         # 最终报告与子任务输出契约
+│   ├── report-contract.md         # 最终报告与子任务输出契约
+│   └── output-formats.md          # Markdown、飞书、htmlbox 与 artifacts 输出模式
 ├── agents/
 │   └── openai.yaml                # UI 元数据
 ├── assets/
