@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="760" viewBox="0 0 1680 760">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L10 4 L0 8 z"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1680" height="760" fill="#EFE9D9"/>
+  <rect x="62" y="58" width="1556" height="630" fill="#0F0F0F"/>
+  <rect x="42" y="38" width="1556" height="630" fill="#EFE9D9" stroke="#0F0F0F" stroke-width="4"/>
+
+  <rect x="96" y="96" width="1488" height="102" fill="#1F8A4C" stroke="#0F0F0F" stroke-width="4"/>
+  <text x="132" y="158" font-size="54" font-weight="800" letter-spacing="1" fill="#0F0F0F">EXPLORATORY DATA ANALYSIS</text>
+  <rect x="1206" y="116" width="326" height="48" fill="#F5C518" stroke="#0F0F0F" stroke-width="4"/>
+  <text x="1230" y="148" font-size="25" font-weight="800" fill="#0F0F0F">CODE-ACT SKILL</text>
+
+  <rect x="118" y="270" width="310" height="172" fill="#F06CA8" stroke="#0F0F0F" stroke-width="4"/>
+  <text x="148" y="322" font-size="32" font-weight="800" fill="#0F0F0F">ASK</text>
+  <text x="148" y="366" font-size="24" font-weight="700" fill="#0F0F0F">Short plan</text>
+  <text x="148" y="400" font-size="24" font-weight="700" fill="#0F0F0F">Hypotheses</text>
+
+  <rect x="500" y="246" width="340" height="220" fill="#EFE9D9" stroke="#0F0F0F" stroke-width="4"/>
+  <rect x="518" y="264" width="304" height="54" fill="#F5C518" stroke="#0F0F0F" stroke-width="4"/>
+  <text x="546" y="301" font-size="30" font-weight="800" fill="#0F0F0F">EXECUTE</text>
+  <text x="534" y="360" font-size="24" font-weight="700" fill="#0F0F0F">Pandas / NumPy</text>
+  <text x="534" y="396" font-size="24" font-weight="700" fill="#0F0F0F">Statistics</text>
+  <text x="534" y="432" font-size="24" font-weight="700" fill="#0F0F0F">Schema checks</text>
+
+  <rect x="916" y="270" width="310" height="172" fill="#E85A1F" stroke="#0F0F0F" stroke-width="4"/>
+  <text x="946" y="322" font-size="32" font-weight="800" fill="#0F0F0F">OBSERVE</text>
+  <text x="946" y="366" font-size="24" font-weight="700" fill="#0F0F0F">Evidence</text>
+  <text x="946" y="400" font-size="24" font-weight="700" fill="#0F0F0F">Contradictions</text>
+
+  <rect x="1290" y="246" width="240" height="220" fill="#EFE9D9" stroke="#0F0F0F" stroke-width="4"/>
+  <text x="1322" y="320" font-size="32" font-weight="800" fill="#0F0F0F">ITERATE</text>
+  <text x="1322" y="366" font-size="24" font-weight="700" fill="#0F0F0F">Better</text>
+  <text x="1322" y="400" font-size="24" font-weight="700" fill="#0F0F0F">questions</text>
+
+  <line x1="428" y1="356" x2="500" y2="356" stroke="#0F0F0F" stroke-width="4" marker-end="url(#arrow)"/>
+  <line x1="840" y1="356" x2="916" y2="356" stroke="#0F0F0F" stroke-width="4" marker-end="url(#arrow)"/>
+  <line x1="1226" y1="356" x2="1290" y2="356" stroke="#0F0F0F" stroke-width="4" marker-end="url(#arrow)"/>
+  <polyline points="1410,466 1410,558 272,558 272,442" fill="none" stroke="#0F0F0F" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <rect x="116" y="600" width="464" height="56" fill="#F5C518" stroke="#0F0F0F" stroke-width="4"/>
+  <text x="142" y="637" font-size="22" font-weight="800" fill="#0F0F0F">CSV / EXCEL TO MARKDOWN</text>
+  <rect x="620" y="600" width="350" height="56" fill="#1F8A4C" stroke="#0F0F0F" stroke-width="4"/>
+  <text x="646" y="637" font-size="22" font-weight="800" fill="#0F0F0F">MERMAID VISUALS</text>
+  <rect x="1010" y="600" width="494" height="56" fill="#F06CA8" stroke="#0F0F0F" stroke-width="4"/>
+  <text x="1036" y="637" font-size="22" font-weight="800" fill="#0F0F0F">NUMBER-BACKED FUN FACTS</text>
+</svg>

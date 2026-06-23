@@ -1,0 +1,4 @@
+interface:
+  display_name: "EDA"
+  short_description: "Analyze CSV and Excel datasets"
+  default_prompt: "Use $eda to explore this CSV or Excel dataset and produce a Markdown report with Mermaid visuals."
