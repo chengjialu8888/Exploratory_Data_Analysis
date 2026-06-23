@@ -59,6 +59,7 @@ If the user explicitly asks for Feishu/Lark output, do not stop at local Markdow
 
 Include at least:
 - row and column counts
+- data source type and whether the analysis used the full population, a capped preview, a sample, or precomputed aggregates
 - column type summary
 - top missingness issues
 - duplicate assessment
@@ -72,6 +73,8 @@ For each major finding, provide one of:
 - top categories with counts
 - date range and granularity
 - representative row identifier when safe
+
+For large or linked datasets, include the actual rows or entities processed and any row cap, pagination, or sampling limitation encountered.
 
 ## Mermaid Patterns
 

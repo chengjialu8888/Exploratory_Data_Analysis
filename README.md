@@ -4,7 +4,7 @@
 
 ![Exploratory Data Analysis concept](assets/eda-concept.png)
 
-**A Codex skill for adaptive exploratory data analysis over CSV, Excel, TSV, and spreadsheet-like datasets.**
+**A Codex skill for adaptive exploratory data analysis over CSV, Excel, TSV, dataset links, and spreadsheet-like datasets.**
 
 This skill turns a raw tabular file into an evidence-backed Markdown report. It uses a Code-Act loop rather than a rigid checklist: plan briefly, run Python analysis, observe the results, ask better questions, and synthesize the strongest findings.
 
@@ -15,11 +15,13 @@ Exploratory Data Analysis is not just "print `df.describe()`." Good EDA finds th
 ## What It Does
 
 - Loads CSV, TSV, Excel, and other tabular data with pandas.
+- Accepts dataset links and treats UI preview caps as schema previews, not analysis populations.
 - Builds a quick data dictionary: shape, types, sample rows, likely identifiers, dates, categories, measures, and text fields.
 - Runs a serial data-quality gate before deeper analysis.
 - Uses independent analysis passes for distributions, relationships, segments, anomalies, and fun facts when the task is broad enough.
 - Produces Markdown reports, Feishu/Lark documents, or Feishu/Lark documents with htmlbox interactive charts.
 - Requires claims to be supported by computed evidence: counts, denominators, percentages, ranges, examples, or caveats.
+- Handles large stage-funnel analyses without relying on invalid first-10k-row subsets.
 
 ## Architecture
 
@@ -55,6 +57,12 @@ Or:
 
 ```text
 Use $eda on this CSV. I care most about missing values, segment differences, anomalies, and surprising findings.
+```
+
+For a dataset link or large event dataset:
+
+```text
+Use $eda on this dataset link. Do not rely on a 10k-row preview for population-level conclusions; compute full-stage aggregates and report the funnel denominators.
 ```
 
 For a Feishu/Lark visual report:
@@ -109,7 +117,8 @@ See [`references/output-formats.md`](references/output-formats.md) for selection
 ├── SKILL.md                       # Main Codex skill instructions
 ├── references/
 │   ├── report-contract.md         # Final report and subtask contracts
-│   └── output-formats.md          # Markdown, Feishu, htmlbox, and artifacts modes
+│   ├── output-formats.md          # Markdown, Feishu, htmlbox, and artifacts modes
+│   └── data-sources-and-scale.md  # Dataset links, row caps, large data, and funnels
 ├── agents/
 │   └── openai.yaml                # UI metadata
 ├── assets/
@@ -142,7 +151,7 @@ MIT
 
 ![Exploratory Data Analysis concept](assets/eda-concept.png)
 
-**一个面向 CSV、Excel、TSV 与表格型数据源的 Codex EDA Skill。**
+**一个面向 CSV、Excel、TSV、数据集链接与表格型数据源的 Codex EDA Skill。**
 
 这个 Skill 会把原始表格数据转化为一份有证据支撑的 Markdown 分析报告。它不是固定模板式流程，而是通过 Code-Act Loop 工作：先做短期规划，再运行 Python 分析，观察结果，提出更好的问题，最后综合最有价值的发现。
 
@@ -153,12 +162,14 @@ EDA 不只是运行 `df.describe()`。好的探索性数据分析应该快速摸
 ## 核心能力
 
 - 使用 pandas 读取 CSV、TSV、Excel 等表格数据。
+- 支持数据集链接输入，并把 1 万行之类的 UI 预览限制视为 schema 预览，而不是分析总体。
 - 建立快速数据字典：行列规模、字段类型、样例行、疑似 ID、日期、类别、数值指标与文本字段。
 - 在深度分析前先执行串行的数据质量检查。
 - 在任务足够宽泛时，用相互独立的分析 pass 探索分布、关系、分群、异常和 Fun Facts。
 - 输出支持 Mermaid 图表的 Markdown 报告。
 - 支持 Markdown、飞书文档、飞书文档 + htmlbox 互动图表等输出模式。
 - 要求关键结论必须有计算证据支撑，例如计数、分母、百分比、范围、样例或限制说明。
+- 支持大规模赛程/活动漏斗分析，避免基于前 1 万行子集得出无效结论。
 
 ## 架构
 
@@ -194,6 +205,12 @@ Use $eda to explore ./data/customers.xlsx and produce a Markdown report with Mer
 
 ```text
 Use $eda on this CSV. I care most about missing values, segment differences, anomalies, and surprising findings.
+```
+
+如果输入是数据集链接或大规模活动数据：
+
+```text
+Use $eda on this dataset link. Do not rely on a 10k-row preview for population-level conclusions; compute full-stage aggregates and report the funnel denominators.
 ```
 
 如果希望输出为飞书可视化报告：
@@ -248,7 +265,8 @@ Use $eda to analyze this Excel file and output the result as a Feishu document w
 ├── SKILL.md                       # Codex skill 主说明
 ├── references/
 │   ├── report-contract.md         # 最终报告与子任务输出契约
-│   └── output-formats.md          # Markdown、飞书、htmlbox 与 artifacts 输出模式
+│   ├── output-formats.md          # Markdown、飞书、htmlbox 与 artifacts 输出模式
+│   └── data-sources-and-scale.md  # 数据链接、行数上限、大数据与漏斗分析
 ├── agents/
 │   └── openai.yaml                # UI 元数据
 ├── assets/

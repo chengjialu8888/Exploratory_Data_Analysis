@@ -1,6 +1,6 @@
 ---
 name: eda
-description: Exploratory Data Analysis for CSV, Excel, TSV, and tabular data files. Use when the user asks Codex to inspect, profile, analyze, visualize, summarize, or find insights in spreadsheet-like datasets; produce Markdown reports, Feishu/Lark documents, Mermaid diagrams, or htmlbox interactive visualizations; discover data quality issues, distributions, relationships, anomalies, segments, or fun facts; or recommend next analysis directions.
+description: Exploratory Data Analysis for CSV, Excel, TSV, dataset links, database exports, and tabular data files at small or large scale. Use when the user asks Codex to inspect, profile, analyze, visualize, summarize, or find insights in spreadsheet-like datasets; produce Markdown reports, Feishu/Lark documents, Mermaid diagrams, or htmlbox interactive visualizations; discover data quality issues, distributions, relationships, anomalies, segments, funnels, event-stage drop-off, or fun facts; or recommend next analysis directions.
 ---
 
 # Exploratory Data Analysis
@@ -22,6 +22,7 @@ If the user includes this prompt, treat it as an explicit progress contract: "æ¯
 
 - Use Python with `pandas`, `numpy`, and standard plotting/statistics libraries available in the environment.
 - Read CSV/TSV with `pandas.read_csv`; read Excel with `pandas.read_excel`.
+- Accept dataset links as inputs. Download, stream, or query the source according to its access method; do not treat a preview row cap as the analysis population.
 - Save intermediate normalized data to a local file when it helps parallel subtasks share the same input.
 - Use Mermaid diagrams in Markdown for compact visual summaries. Use tables for exact numbers when Mermaid would be awkward.
 - When the user asks for a Feishu/Lark deliverable, create a document report and use htmlbox visualizations for charts that benefit from interaction, animation, or ECharts.
@@ -77,7 +78,7 @@ Avoid parallelism when subtasks require real-time coordination, share mutable fi
 
 Combine subtask outputs. Resolve contradictions by rerunning the relevant calculation in the main context. Prefer a smaller set of strong insights over a long catalog of weak observations.
 
-Read `references/report-contract.md` and `references/output-formats.md` before drafting the final report.
+Read `references/report-contract.md`, `references/output-formats.md`, and `references/data-sources-and-scale.md` before drafting the final report.
 
 The final deliverable should be a Markdown report that:
 - starts with the dataset's basic facts and the most important caveats
@@ -95,6 +96,8 @@ If the user did not specify an output target, default to a local Markdown report
 - Do not silently drop rows or impute values without reporting the rule and impact.
 - For personally identifiable or sensitive data, aggregate by default and avoid exposing raw personal records unless the user explicitly needs row-level debugging.
 - Keep code reproducible enough that another Codex run can rerun the checks.
+- Do not perform full-population claims from a capped preview, such as the first 10,000 rows. For large datasets, compute full aggregates with chunked reads, pushdown queries, or staged summary tables; use samples only for schema inference, examples, and qualitative inspection.
+- For stage-based event analysis, report denominators at every stage. Never compare a late-stage subset to an early-stage population without preserving the funnel context.
 
 ## Mermaid Guidance
 
