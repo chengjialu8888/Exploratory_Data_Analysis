@@ -9,6 +9,15 @@ Use this skill to explore tabular data through an adaptive Code-Act loop: make a
 
 Prefer evidence over narrative. Every meaningful claim in the final report should be backed by a computed statistic, row count, rate, example record, or chart.
 
+## Progress Updates
+
+For long-running EDA tasks, especially when loading large files, spawning independent analysis passes, generating Feishu/Lark documents, or creating htmlbox charts, provide progress updates about every 10 minutes. Each update should:
+- say what has been completed
+- recalibrate the user's expectation for what remains
+- call out potential blockers early, such as file parsing issues, missing permissions, slow chart verification, ambiguous schema, or data-quality problems that may change the analysis plan
+
+If the user includes this prompt, treat it as an explicit progress contract: "每 10 分钟给我汇报进展，帮我校准预期，提前知会潜在卡点".
+
 ## Core Tools
 
 - Use Python with `pandas`, `numpy`, and standard plotting/statistics libraries available in the environment.

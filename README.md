@@ -63,6 +63,18 @@ For a Feishu/Lark visual report:
 Use $eda to analyze this Excel file and output the result as a Feishu document with htmlbox visualizations.
 ```
 
+For longer EDA runs, append this progress expectation:
+
+```text
+每 10 分钟给我汇报进展，帮我校准预期，提前知会潜在卡点
+```
+
+Full example:
+
+```text
+Use $eda to analyze this Excel file and output the result as a Feishu document with htmlbox visualizations. 每 10 分钟给我汇报进展，帮我校准预期，提前知会潜在卡点
+```
+
 ## Output
 
 The final report should adapt to the dataset, but typically includes:
@@ -188,6 +200,18 @@ Use $eda on this CSV. I care most about missing values, segment differences, ano
 
 ```text
 Use $eda to analyze this Excel file and output the result as a Feishu document with htmlbox visualizations.
+```
+
+如果是耗时较长的 EDA 任务，建议附带这句进展预期：
+
+```text
+每 10 分钟给我汇报进展，帮我校准预期，提前知会潜在卡点
+```
+
+完整示例：
+
+```text
+Use $eda to analyze this Excel file and output the result as a Feishu document with htmlbox visualizations. 每 10 分钟给我汇报进展，帮我校准预期，提前知会潜在卡点
 ```
 
 ## 输出内容
